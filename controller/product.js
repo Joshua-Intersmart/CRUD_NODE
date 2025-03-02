@@ -11,7 +11,7 @@ exports.createProduct = async (req, res, next) => {
             created_by,
         });
 
-        if(!createdProduct) {
+        if (!createdProduct) {
             return next(Object.assign(new Error("Product not created!"), { status: 400 }));
         }
 
@@ -65,7 +65,42 @@ exports.deleteProduct = async (req, res, next) => {
             return next(Object.assign(new Error("Product not found!"), { status: 404 }));
         }
 
-        return res.status(204).send();
+        return res.status(204).json({
+            success: true,
+            message: "Product deleted successfully!",
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.fetchOneProduct = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const products = await db.Products.findByPk(id);
+
+        return res.status(204).json({
+            success: true,
+            message: "Product fetched successfully!",
+            products
+        });
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+exports.fetchAllProduct = async (req, res, next) => {
+    try {
+        const products = await db.Products.findAll();
+
+        return res.status(204).json({
+            success: true,
+            message: "Product fetched successfully!",
+            products
+        });
 
     } catch (error) {
         next(error);
