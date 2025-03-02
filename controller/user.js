@@ -35,7 +35,7 @@ exports.fetchOneUser = async (req, res, next) => {
 
         const user = await db.Products.findByPk(id);
 
-        return res.status(204).json({
+        return res.status(200).json({
             success: true,
             message: "Product fetched successfully!",
             user

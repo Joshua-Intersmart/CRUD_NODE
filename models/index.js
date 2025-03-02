@@ -8,7 +8,7 @@ const sequelize = new Sequelize(process.env.DB_dbname, process.env.DB_user, proc
   host: process.env.DB_host,
   port: process.env.DB_port,
   minifyAliases: true,
-  logging: false,
+  logging: true,
   // dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }
 });
 

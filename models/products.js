@@ -28,9 +28,6 @@ module.exports = (sequelize, Sequelize) => {
                 },
                 onDelete: "SET NULL",
             },
-        },
-        {
-            timestamps: true,
         }
     );
 

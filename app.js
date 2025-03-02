@@ -6,6 +6,7 @@ const errorHandler = require("./middleware/errorHandler");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const productRouter = require("./routes/product");
+const { isAuth } = require("./middleware/authHandler");
 
 app.use(cors());
 
@@ -13,8 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/users", userRouter);
-app.use("/api/v1/product", productRouter);
+app.use("/api/v1/users",isAuth, userRouter);
+app.use("/api/v1/product", isAuth, productRouter);
 
 app.use(errorHandler);
 

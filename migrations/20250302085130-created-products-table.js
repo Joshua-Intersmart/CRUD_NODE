@@ -30,8 +30,6 @@ module.exports = {
         },
         onDelete: "SET NULL",
       },
-    }, {
-      timestamps: true,
     })
   },
 

@@ -2,13 +2,14 @@ const { db } = require("../models");
 
 exports.createProduct = async (req, res, next) => {
     try {
-        const { product_name, product_description, price, created_by } = req.body;
+        const { product_name, description, price } = req.body;
+        const { userId } = req;
 
         const createdProduct = await db.Products.create({
             product_name,
-            product_description,
+            description,
             price,
-            created_by,
+            created_by: userId,
         });
 
         if (!createdProduct) {
@@ -29,7 +30,7 @@ exports.createProduct = async (req, res, next) => {
 exports.updateProduct = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const { product_name, product_description, price } = req.body;
+        const { product_name, description, price } = req.body;
 
         const existProduct = await db.Products.findByPk(id);
         if (!existProduct) {
@@ -37,7 +38,7 @@ exports.updateProduct = async (req, res, next) => {
         }
 
         const [updatedRows] = await db.Products.update(
-            { product_name, product_description, price },
+            { product_name, description, price },
             { where: { id } }
         );
 
@@ -81,7 +82,7 @@ exports.fetchOneProduct = async (req, res, next) => {
 
         const products = await db.Products.findByPk(id);
 
-        return res.status(204).json({
+        return res.status(200).json({
             success: true,
             message: "Product fetched successfully!",
             products
@@ -96,7 +97,7 @@ exports.fetchAllProduct = async (req, res, next) => {
     try {
         const products = await db.Products.findAll();
 
-        return res.status(204).json({
+        return res.status(200).json({
             success: true,
             message: "Product fetched successfully!",
             products
