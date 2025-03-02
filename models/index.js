@@ -8,12 +8,21 @@ const sequelize = new Sequelize(process.env.DB_dbname, process.env.DB_user, proc
   host: process.env.DB_host,
   port: process.env.DB_port,
   minifyAliases: true,
+  logging: false,
   // dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }
 });
+
+const db = {}
+db.Users = require("./users")(sequelize, Sequelize);
+db.Products = require("./products")(sequelize, Sequelize);
+
+db.Users.hasMany(db.Products, { foreignKey: "created_by", as: "created_products" });
+db.Products.hasMany(db.Users, { foreignKey: "created_by", as: "created_use" });
 
 module.exports = {
   sequelize,
   Sequelize,
   Op,
-  DataTypes
+  DataTypes,
+  db
 };

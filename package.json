@@ -10,6 +10,25 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.9",
+    "pg": "^8.13.3",
     "sequelize-cli": "^6.6.2"
-  }
+  },
+  "name": "crud_node",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshua-Intersmart/CRUD_NODE.git"
+  },
+  "author": "Joshua Johnson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joshua-Intersmart/CRUD_NODE/issues"
+  },
+  "homepage": "https://github.com/Joshua-Intersmart/CRUD_NODE#readme",
+  "description": ""
 }
