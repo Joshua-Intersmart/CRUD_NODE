@@ -29,7 +29,7 @@ exports.updateUser = async (req, res, next) => {
     }
 };
 
-exports.fetchOneProduct = async (req, res, next) => {
+exports.fetchOneUser = async (req, res, next) => {
     try {
         const { id } = req.params;
 
